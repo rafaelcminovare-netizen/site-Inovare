@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section catalog" id="catalogo">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Catálogo</span>
+      <h2>Catálogo {{ brand.name }}</h2>
+    </div>
+    <p class="catalog-description">{{ brand.description }} Explore os principais produtos e soluções representados por nossa equipe.</p>
+
+    <div class="catalog-grid">
+      {% for product in products %}
+      <article class="catalog-card">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.summary }}</p>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="catalog-actions">
+      <a class="button button-secondary" href="{{ url_for('home') }}#marcas">Voltar para marcas</a>
+      <a class="button button-primary" href="{{ url_for('home') }}#contato">Solicitar contato</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

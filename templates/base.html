@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Inovare Representações Comerciais</title>
+  <meta name="description" content="Inovare Representações Comerciais conecta grandes marcas ao mercado da construção em Joinville e região do Planalto Norte.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="{{ url_for('home') }}" class="brand">Inovare</a>
+      <button class="menu-toggle" aria-label="Abrir menu" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="{{ url_for('home') }}#inicio">Home</a>
+        <a href="{{ url_for('home') }}#sobre">Sobre</a>
+        <a href="{{ url_for('home') }}#marcas">Marcas</a>
+        <a href="{{ url_for('home') }}#regiao">Região</a>
+        <a href="{{ url_for('home') }}#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <section class="alerts container">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </section>
+    {% endif %}
+  {% endwith %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Inovare Representações Comerciais</strong>
+        <p>R. Ewaldo Eichholz, 951 - Vila Nova, Joinville - SC</p>
+        <p>Atendemos Joinville e região do Planalto Norte</p>
+      </div>
+      <div class="footer-links">
+        <a href="{{ url_for('home') }}#marcas">Marcas</a>
+        <a href="{{ url_for('home') }}#contato">Contato</a>
+        <a href="{{ url_for('home') }}#sobre">Sobre</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>© {{ "now" | replace('now', "2026") }} Inovare Representações Comerciais. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/inovarerepresentacao/" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/inovarerepresentacao/" target="_blank">Facebook</a>
+        <a href="https://br.linkedin.com/company/inovare-representa%C3%A7%C3%B5es-comerciais" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
