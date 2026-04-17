@@ -6,7 +6,8 @@
     <div class="hero-copy">
       <span class="eyebrow">Inovare Representações Comerciais</span>
       <h1>Conectando grandes marcas ao mercado da construção</h1>
-      <p>Atuamos com credibilidade e experiência para levar marcas consagradas ao setor da construção em Joinville e região do Planalto Norte.</p>
+      <p class="hero-slogan">"Gerando valor para o seu negócio"</p>
+      <p>Atuamos com credibilidade e experiência para levar marcas consagradas ao setor da construção em Joinville e região do Norte e Nordeste de Santa Catarina.</p>
       <a class="button button-primary" href="#marcas">Conheça nossas marcas</a>
     </div>
     <div class="hero-visual">
@@ -29,9 +30,11 @@
   <div class="container">
     <div class="section-header">
       <span class="section-tag">Sobre a empresa</span>
-      <h2>Representação comercial com foco em confiança e performance</h2>
+      <h2>Gerando valor para o seu negócio</h2>
     </div>
-    <p>A Inovare Representações Comerciais atua como ponte entre grandes fabricantes e distribuidores do setor da construção. Nossa missão é ampliar a presença das marcas parceiras por meio de atendimento dedicado, relacionamento estreito e soluções que agregam valor ao mercado local.</p>
+    <p>Somos uma empresa de representação comercial especializada no setor da construção civil, com o propósito de conectar clientes a soluções inovadoras, sustentáveis e que geram valor real ao negócio.</p>
+    <p>Atuamos de forma estratégica no Norte e Nordeste de Santa Catarina, levando ao mercado marcas consolidadas e produtos de alta qualidade, sempre com foco em performance e resultados.</p>
+    <p>Nosso compromisso vai além da intermediação comercial: buscamos entender profundamente as necessidades de cada cliente, oferecendo soluções personalizadas que impulsionam vendas, fortalecem parcerias e geram crescimento consistente e duradouro.</p>
   </div>
 </section>
 
@@ -57,12 +60,12 @@
   <div class="container region-grid">
     <div>
       <span class="section-tag">Região de atuação</span>
-      <h2>Atendemos Joinville e região do Planalto Norte</h2>
-      <p>Com base estratégica no norte catarinense, entregamos suporte comercial, treinamento e atendimento local para toda a região.</p>
+      <h2>Atendemos Norte e Nordeste de Santa Catarina</h2>
+      <p>Com base estratégica em Joinville, entregamos suporte comercial, treinamentos, materiais e atendimento personalizado para toda a região Norte e Nordeste de SC.</p>
     </div>
-    <div class="region-card">
+      <div class="region-card">
       <div class="region-icon">📍</div>
-      <p>Plano Norte de Santa Catarina</p>
+      <p>Norte e Nordeste de Santa Catarina</p>
     </div>
   </div>
 </section>
@@ -92,8 +95,11 @@
         </div>
       </div>
       <form class="contact-form" action="{{ url_for('contato') }}" method="post">
+        <div style="position: relative;">
+          <input type="text" class="honeypot" name="honeypot" tabindex="-1" autocomplete="off" value="">
+        </div>
         <div class="form-group">
-          <label for="nome">Nome</label>
+          <label for="nome">Nome *</label>
           <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
         </div>
         <div class="form-row">

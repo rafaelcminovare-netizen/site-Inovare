@@ -1,36 +1,47 @@
-# Inovare Representações Comerciais
+# Inovare Representações Comerciais - HTTPS Flask ✅
 
-Projeto com site institucional em HTML/CSS/JS e backend Python Flask.
+Site institucional refatorado com **Flask backend + HTTPS**.
 
-## Como rodar
+## 🚀 Rodar HTTPS Local
 
-1. Abra o terminal em `c:\Users\rafae\Desktop\site Inovare`
-2. Instale o Flask (se ainda não tiver):
-   ```powershell
-   py -m pip install -r requirements.txt
-   ```
-   Se o comando `py` não funcionar, tente:
-   ```powershell
-   python -m pip install -r requirements.txt
-   ```
-3. Inicie o servidor Flask:
-   ```powershell
-   py app.py
-   ```
-   Ou, se `py` não estiver disponível:
-   ```powershell
-   python app.py
-   ```
-4. Acesse no navegador:
-   ```text
-   http://127.0.0.1:5000
-   ```
+```bash
+cd c:/Users/rafae/OneDrive/Desktop/site-Inovare
 
-> Se os comandos `python` ou `py` não funcionarem, instale o Python 3 e marque a opção para adicioná-lo ao PATH durante a instalação.
+# Dependências
+py -m pip install -r requirements.txt cryptography
 
-## Observações
+# Iniciar servidor
+py app.py
+```
 
-- `index.html` raiz é uma versão estática do site para visualização direta.
-- O backend Flask usa os arquivos em `templates/` e `static/`.
-- Para editar o site, abra `templates/index.html`, `static/css/style.css` e `static/js/script.js`.
-- Adicione a imagem da empresa em `static/images/empresa.jpg` para que o banner de apresentação apareça.
+**URL: https://127.0.0.1:5000**  
+*(Aceite aviso de certificado no navegador)*
+
+## 🌐 Funcionalidades
+| Rota | Descrição |
+|------|-----------|
+| `/` | Home com marcas dinâmicas |
+| `/privacidade` | Política LGPD completa |
+| `/catalogo/condor` | Catálogo com produtos mock |
+| POST `/contato` | Form com validação/anti-spam |
+
+**Responsive + animações premium implementadas.**
+
+## 🏗️ Estrutura
+```
+├── app.py           # Flask + HTTPS + dados mock
+├── templates/       # Jinja2: index.html, catalogo.html...
+├── static/          # CSS premium, JS, logo.svg
+├── requirements.txt # Flask>=2.3.0
+└── README.md/TODO.md
+```
+
+## 🔧 Customizar
+- **Marcas/produtos**: Edite `brands` e `get_products()` em app.py
+- **Design**: `static/css/style.css`
+- **Email form**: Adicione smtplib em `/contato`
+
+## ⚠️ Produção
+Use Gunicorn + Nginx/Apache + Let's Encrypt SSL (não dev server).
+
+**Site pronto para uso!** 🎉
