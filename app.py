@@ -80,25 +80,25 @@ def catalogo(marca):
     products = get_products(marca)
     return render_template('catalogo.html', brand=brand, products=products)
 
-@app.route('/contato', methods=['POST'])
-def contato_post():
-    honeypot = request.form.get('honeypot', '')
-    if honeypot:
-        flash('Detecção de spam. Tente novamente.', 'error')
-        return redirect(url_for('home') + '#contato')
+@app.route('/contato', methods=['GET', 'POST'])
+def contato():
+    if request.method == 'POST':
+        honeypot = request.form.get('honeypot', '')
+        if honeypot:
+            flash('Detecção de spam. Tente novamente.', 'error')
+            return redirect(url_for('home') + '#contato')
 
-    nome = request.form.get('nome', '').strip()
-    email = request.form.get('email', '').strip()
-    telefone = request.form.get('telefone', '').strip()
-    mensagem = request.form.get('mensagem', '').strip()
+        nome = request.form.get('nome', '').strip()
+        email = request.form.get('email', '').strip()
+        telefone = request.form.get('telefone', '').strip()
+        mensagem = request.form.get('mensagem', '').strip()
 
-    if nome and mensagem and (email or telefone):
-        # TODO: Integrate real email (smtplib) in production
-        flash('Obrigado! Mensagem recebida. Responderemos em breve.', 'success')
-    else:
-        flash('Preencha nome, mensagem e email ou telefone.', 'error')
+        if nome and mensagem and (email or telefone):
+            # TODO: Integrate real email (smtplib) in production
+            flash('Obrigado! Mensagem recebida. Responderemos em breve.', 'success')
+        else:
+            flash('Preencha nome, mensagem e email ou telefone.', 'error')
 
-    return redirect(url_for('home') + '#contato')
 
 if __name__ == '__main__':
     print('🚀 Iniciando servidor HTTPS Inovare...')
