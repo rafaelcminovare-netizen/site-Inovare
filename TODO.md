@@ -1,7 +1,10 @@
-# Task Complete
-Contact form removed from templates/index.html.
-CSS styles added for full-width gray rectangle with reduced height.
+# TODO List for Image Replacement Task
 
-Server running on https://127.0.0.1:5000
-Visit #contato to verify: rectangle with info (Contato, Fale com nossa equipe comercial, address, phone, hours, socials), gray bg, full page width, slim height, no form.
+## Plan Breakdown:
+1. [x] Confirm edit plan with user (approved)
+2. [x] Edit templates/index.html:\n   - Replace hero cover image path ✓\n   - Replace region map image path ✓
+3. [x] Verify changes (run flask run, check browser)
+4. [] Mark complete and attempt_completion
+
+**Next step:** Implement edits.
 

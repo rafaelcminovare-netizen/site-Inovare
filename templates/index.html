@@ -1,19 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="capa" id="inicio">
-  <div class="capa-container">
-    <img src="{{ url_for('static', filename='images/Logo Inovare.jpg') }}" alt="Logo Inovare" class="capa-logo">
-    <div class="capa-copy">
-      <h1>Inovare Representações Comerciais</h1>
-      <p class="capa-description">Atuamos com credibilidade e experiência para levar marcas consagradas ao setor da construção em Joinville e região do Norte e Nordeste de Santa Catarina.</p>
-      <div class="capa-details">
-        <p>📍 R. Ewaldo Eichholz, 951 - Vila Nova, Joinville - SC</p>
-        <p>📞 (47) 99651-1021</p>
-        <p>🕒 Seg - Sex: 07:30 - 18:00</p>
-      </div>
-    </div>
-  </div>
+<section class="hero" id="inicio" aria-label="Capa principal do site">
+  <img src="{{ url_for('static', filename='images/capa site (2).png') }}" alt="Capa do site">
 </section>
 
 <section class="section about" id="sobre">
@@ -28,28 +17,51 @@
   </div>
 </section>
 
-<section class="section brands" id="marcas">
+<section class="section represented-companies" id="marcas">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Marcas representadas</span>
-      <h2>Portfólio selecionado de marcas de referência</h2>
+      <span class="section-tag">Empresas representadas</span>
+      <h2>Nossas empresas representadas</h2>
+      <p>Clique em uma empresa para ver mais detalhes e acessar o catálogo completo.</p>
     </div>
-    <div class="brands-grid">
-      {% for slug, brand in brands.items() %}
-      <article class="brand-card">
-        {% if brand.logo %}
-        <div class="brand-card-logo">
-          <img src="{{ url_for('static', filename='images/' ~ brand.logo) }}" alt="{{ brand.name }} logo">
-        </div>
-        {% endif %}
-        <h3>{{ brand.name }}</h3>
-        <p>{{ brand.description }}</p>
-        <a class="button button-secondary" href="{{ url_for('catalogo', marca=slug) }}">Ver catálogo</a>
-      </article>
-      {% endfor %}
-    </div>
+
+    <div class="companies-grid" id="companiesGrid" aria-live="polite"></div>
   </div>
 </section>
+
+<div class="company-modal" id="companyModal" aria-hidden="true">
+  <div class="company-modal__backdrop" data-close-modal="true"></div>
+  <div class="company-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="companyModalTitle">
+    <button class="company-modal__close" id="companyModalClose" type="button" aria-label="Fechar modal">✕</button>
+
+    <div class="company-modal__banner" id="companyModalBanner">
+      <div class="company-modal__overlay"></div>
+      <div class="company-modal__banner-content">
+        <span class="company-modal__eyebrow">Empresa representada</span>
+        <h3 class="company-modal__title" id="companyModalTitle"></h3>
+        <a class="company-modal__button" id="companyModalLink" href="#" target="_blank" rel="noopener noreferrer">Ver Catálogo ↗</a>
+      </div>
+    </div>
+
+    <div class="company-modal__content">
+      <p class="company-modal__description" id="companyModalDescription"></p>
+    </div>
+  </div>
+</div>
+
+<script id="brands-data" type="application/json">
+[
+  {% for slug, brand in brands.items() %}
+  {
+    "slug": {{ slug|tojson }},
+    "name": {{ brand.name|tojson }},
+    "description": {{ brand.description|tojson }},
+    "image": {{ (url_for('static', filename=brand.image) if brand.image else '')|tojson }},
+    "link": {{ url_for('catalogo', marca=slug)|tojson }}
+  }{% if not loop.last %},{% endif %}
+  {% endfor %}
+]
+</script>
 
 <section class="section premios-section" id="premios">
   <div class="container">
@@ -84,7 +96,7 @@
       <h2>Mapa da área de atuação</h2>
     </div>
     <div class="region-map-container">
-      <img src="{{ url_for('static', filename='images/região de atuação.png') }}" alt="Mapa da região de atuação" class="region-map">
+      <img src="{{ url_for('static', filename='images/regiao de atuacao.png.png') }}" alt="Mapa da região de atuação" class="region-map">
     </div>
   </div>
 </section>
@@ -95,7 +107,7 @@
       <span class="section-tag">Contato</span>
       <h2>Fale com nossa equipe comercial</h2>
     </div>
-<div class="contact-info">
+    <div class="contact-info">
       <div class="contact-card">
         <h3>Informações da Inovare</h3>
         <ul class="contact-list">
@@ -106,14 +118,14 @@
         <div>
           <h4 class="contact-card-subtitle">Redes sociais</h4>
           <ul class="social-list">
-            <li><a href="https://www.instagram.com/inovarerepresentacao/" target="_blank">Instagram</a></li>
-            <li><a href="https://www.facebook.com/inovarerepresentacao/" target="_blank">Facebook</a></li>
-            <li><a href="https://br.linkedin.com/company/inovare-representa%C3%A7%C3%B5es-comerciais" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/inovarerepresentacao/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://www.facebook.com/inovarerepresentacao/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="https://br.linkedin.com/company/inovare-representa%C3%A7%C3%B5es-comerciais" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 {% endblock %}
+
