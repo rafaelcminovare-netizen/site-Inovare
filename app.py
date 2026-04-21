@@ -7,27 +7,33 @@ app.secret_key = 'inovare_secret_key_change_in_prod_2024'
 brands = {
     'condor': {
         'name': 'Condor',
-        'description': 'Ferramentas elétricas profissionais para construção e reforma.'
+        'description': 'Ferramentas elétricas profissionais para construção e reforma.',
+        'image': 'img/condor.png.webp'
     },
     'grupo-krona': {
         'name': 'Grupo Krona',
-        'description': 'Tubos, conexões e sistemas hidráulicos de alta performance.'
+        'description': 'Tubos, conexões e sistemas hidráulicos de alta performance.',
+        'image': 'img/grupo krona.png.jfif'
     },
     'hidronorth': {
         'name': 'HidroNorth',
-        'description': 'Soluções completas em hidráulica e saneamento.'
+        'description': 'Soluções completas em hidráulica e saneamento.',
+        'image': 'img/hidronorth.png.png'
     },
     'quartzolit': {
         'name': 'Quartzolit (Saint-Gobain)',
-        'description': 'Impermeabilizantes e aditivos para concreto de referência.'
+        'description': 'Impermeabilizantes e aditivos para concreto de referência.',
+        'image': 'img/Quartzolit.png.png'
     },
     'starrett': {
         'name': 'Starrett',
-        'description': 'Ferramentas de precisão e medição de alta qualidade.'
+        'description': 'Ferramentas de precisão e medição de alta qualidade.',
+        'image': 'img/starrett.png.png'
     },
     'viqua': {
         'name': 'Viqua',
-        'description': 'Sistemas de purificação de água UV líder mundial.'
+        'description': 'Sistemas de purificação de água UV líder mundial.',
+        'image': 'img/viqua.png.jpg'
     }
 }
 
