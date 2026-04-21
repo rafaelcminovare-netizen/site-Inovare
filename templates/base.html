@@ -11,23 +11,21 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="top-brand-bar hero-fullwidth">\n    </div>
-
-    <div class="main-nav-bar">
-      <div class="container header-inner">
-        <button class="menu-toggle" aria-label="Abrir menu" id="menuToggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav class="nav-links" id="navLinks">
-          <a href="{{ url_for('home') }}#sobre">Sobre nós</a>
-          <a href="{{ url_for('home') }}#marcas">Produtos</a>
-          <a href="{{ url_for('home') }}#premios">Prêmios</a>
-          <a href="{{ url_for('home') }}#regiao">Região de atuação</a>
-          <a href="{{ url_for('home') }}#contato">Contato</a>
-        </nav>
-      </div>
+    <div class="container header-inner">
+      <a href="{{ url_for('home') }}" class="brand">Inovare</a>
+      <button class="menu-toggle" aria-label="Abrir menu" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="{{ url_for('home') }}#inicio">Home</a>
+<a href="{{ url_for('home') }}#sobre">Sobre</a>
+        <a href="{{ url_for('home') }}#premios">Prêmios</a>
+        <a href="{{ url_for('home') }}#marcas">Marcas</a>
+        <a href="{{ url_for('home') }}#regiao">Região</a>
+        <a href="{{ url_for('home') }}#contato">Contato</a>
+      </nav>
     </div>
   </header>
 

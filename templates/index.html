@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="hero" id="inicio" aria-label="Capa principal do site">
-  <img src="{{ url_for('static', filename='images/capa site (2).png') }}" alt="Capa do site">
+<section class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Inovare Representações Comerciais</span>
+      <h1>Conectando grandes marcas ao mercado da construção</h1>
+      <p class="hero-slogan">"Gerando valor para o seu negócio"</p>
+      <p>Atuamos com credibilidade e experiência para levar marcas consagradas ao setor da construção em Joinville e região do Norte e Nordeste de Santa Catarina.</p>
+      <a class="button button-primary" href="#marcas">Conheça nossas marcas</a>
+    </div>
+    <div class="hero-visual">
+      <figure class="hero-image">
+        <img src="{{ url_for('static', filename='images/empresa.jpg') }}" alt="Inovare Representações Comerciais">
+      </figure>
+      <div class="hero-details">
+        <p class="hero-note">R. Ewaldo Eichholz, 951 - Vila Nova, Joinville - SC</p>
+        <p class="hero-note">Telefone: (47) 99651-1021</p>
+        <div class="hero-badges">
+          <span>Seg - Sex: 07:30–18:00</span>
+          <span>Sáb/Dom: Fechado</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="section about" id="sobre">
@@ -17,86 +38,34 @@
   </div>
 </section>
 
-<section class="section represented-companies" id="marcas">
+<section class="section brands" id="marcas">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Empresas representadas</span>
-      <h2>Nossas empresas representadas</h2>
-      <p>Clique em uma empresa para ver mais detalhes e acessar o catálogo completo.</p>
+      <span class="section-tag">Marcas representadas</span>
+      <h2>Portfólio selecionado de marcas de referência</h2>
     </div>
-
-    <div class="companies-grid" id="companiesGrid" aria-live="polite"></div>
-  </div>
-</section>
-
-<div class="company-modal" id="companyModal" aria-hidden="true">
-  <div class="company-modal__backdrop" data-close-modal="true"></div>
-  <div class="company-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="companyModalTitle">
-    <button class="company-modal__close" id="companyModalClose" type="button" aria-label="Fechar modal">✕</button>
-
-    <div class="company-modal__banner" id="companyModalBanner">
-      <div class="company-modal__overlay"></div>
-      <div class="company-modal__banner-content">
-        <span class="company-modal__eyebrow">Empresa representada</span>
-        <h3 class="company-modal__title" id="companyModalTitle"></h3>
-        <a class="company-modal__button" id="companyModalLink" href="#" target="_blank" rel="noopener noreferrer">Ver Catálogo ↗</a>
-      </div>
-    </div>
-
-    <div class="company-modal__content">
-      <p class="company-modal__description" id="companyModalDescription"></p>
-    </div>
-  </div>
-</div>
-
-<script id="brands-data" type="application/json">
-[
-  {% for slug, brand in brands.items() %}
-  {
-    "slug": {{ slug|tojson }},
-    "name": {{ brand.name|tojson }},
-    "description": {{ brand.description|tojson }},
-    "image": {{ (url_for('static', filename=brand.image) if brand.image else '')|tojson }},
-    "link": {{ url_for('catalogo', marca=slug)|tojson }}
-  }{% if not loop.last %},{% endif %}
-  {% endfor %}
-]
-</script>
-
-<section class="section premios-section" id="premios">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Prêmios</span>
-      <h2>Reconhecimento e resultados de alto impacto</h2>
-    </div>
-    <div class="premios-inner">
-      <article class="premios-card">
-        <div class="premios-year"><span class="premios-year-icon">🏆</span>2025</div>
-        <ul>
-          <li>1º lugar nacional na campanha Condor Pincéis, com o maior número de treinamentos, campanhas e ações de sell-out realizados no ano; (Condor)</li>
-          <li>1º lugar nacional na campanha Starrett, com maior crescimento de vendas no 1º semestre de 2025; (Starrett)</li>
-          <li>1º lugar nacional na campanha Starrett, com maior crescimento de vendas no ano de 2025; (Starrett)</li>
-        </ul>
+    <div class="brands-grid">
+      {% for slug, brand in brands.items() %}
+      <article class="brand-card">
+        <h3>{{ brand.name }}</h3>
+        <p>{{ brand.description }}</p>
+        <a class="button button-secondary" href="{{ url_for('catalogo', marca=slug) }}">Ver catálogo</a>
       </article>
-      <article class="premios-card">
-        <div class="premios-year"><span class="premios-year-icon">🏆</span>2024</div>
-        <ul>
-          <li>Maior número de metas batidas no ano, em Santa Catarina; (Krona)</li>
-          <li>Melhor desempenho na aplicação de materiais de merchandising, em Santa Catarina; (Krona)</li>
-        </ul>
-      </article>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 <section class="section region" id="regiao">
-  <div class="container">
-    <div class="region-copy">
+  <div class="container region-grid">
+    <div>
       <span class="section-tag">Região de atuação</span>
-      <h2>Mapa da área de atuação</h2>
+      <h2>Atendemos Norte e Nordeste de Santa Catarina</h2>
+      <p>Com base estratégica em Joinville, entregamos suporte comercial, treinamentos, materiais e atendimento personalizado para toda a região Norte e Nordeste de SC.</p>
     </div>
-    <div class="region-map-container">
-      <img src="{{ url_for('static', filename='images/regiao de atuacao.png.png') }}" alt="Mapa da região de atuação" class="region-map">
+      <div class="region-card">
+      <div class="region-icon">📍</div>
+      <p>Norte e Nordeste de Santa Catarina</p>
     </div>
   </div>
 </section>
@@ -107,25 +76,49 @@
       <span class="section-tag">Contato</span>
       <h2>Fale com nossa equipe comercial</h2>
     </div>
-    <div class="contact-info">
+    <div class="contact-grid">
       <div class="contact-card">
         <h3>Informações da Inovare</h3>
+        <p class="contact-card-text">Envie sua solicitação, tire dúvidas ou agende uma visita em nosso escritório em Joinville.</p>
         <ul class="contact-list">
-          <li><strong>Endereço:</strong> R. Ewaldo Eichholz, 951 - Vila Nova, Joinville - SC, 89237-000</li>
-          <li><strong>Telefone:</strong> (47) 99651-1021</li>
-          <li><strong>Horário:</strong> Seg - Sex: 07:30–18:00</li>
+          <li><strong>Endereço:</strong><span>R. Ewaldo Eichholz, 951 - Vila Nova, Joinville - SC, 89237-000</span></li>
+          <li><strong>Telefone:</strong><span>(47) 99651-1021</span></li>
+          <li><strong>Horário:</strong><span>Seg - Sex: 07:30–18:00<br>Sáb - Dom: Fechado</span></li>
         </ul>
         <div>
           <h4 class="contact-card-subtitle">Redes sociais</h4>
           <ul class="social-list">
-            <li><a href="https://www.instagram.com/inovarerepresentacao/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="https://www.facebook.com/inovarerepresentacao/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a href="https://br.linkedin.com/company/inovare-representa%C3%A7%C3%B5es-comerciais" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/inovarerepresentacao/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.facebook.com/inovarerepresentacao/" target="_blank">Facebook</a></li>
+            <li><a href="https://br.linkedin.com/company/inovare-representa%C3%A7%C3%B5es-comerciais" target="_blank">LinkedIn</a></li>
           </ul>
         </div>
       </div>
+      <form class="contact-form" action="{{ url_for('contato') }}" method="post">
+        <div style="position: relative;">
+          <input type="text" class="honeypot" name="honeypot" tabindex="-1" autocomplete="off" value="">
+        </div>
+        <div class="form-group">
+          <label for="nome">Nome *</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(47) 99999-9999">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua necessidade ou solicitação" required></textarea>
+        </div>
+        <button class="button button-primary" type="submit">Enviar mensagem</button>
+      </form>
     </div>
   </div>
 </section>
 {% endblock %}
-

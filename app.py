@@ -1,114 +1,67 @@
-import os
-import re
-import unicodedata
-
 from flask import Flask, render_template, request, flash, redirect, url_for
 
 app = Flask(__name__)
 app.secret_key = 'inovare_secret_key_change_in_prod_2024'
 
-
-def normalize_text(value):
-    normalized = unicodedata.normalize('NFKD', value or '')
-    ascii_text = normalized.encode('ascii', 'ignore').decode('ascii')
-    ascii_text = ascii_text.lower()
-    ascii_text = re.sub(r'[\(\)\[\]\{\}]', ' ', ascii_text)
-    ascii_text = ascii_text.replace('-', ' ')
-    ascii_text = re.sub(r'[^a-z0-9\s]', ' ', ascii_text)
-    ascii_text = re.sub(r'\s+', ' ', ascii_text).strip()
-    return ascii_text
-
-
-def remove_all_extensions(filename):
-    base_name = filename
-    while True:
-        next_base, extension = os.path.splitext(base_name)
-        if not extension:
-            return base_name
-        base_name = next_base
-
-
-def build_image_index():
-    img_directory = os.path.join(app.static_folder, 'img')
-    if not os.path.isdir(img_directory):
-      return {}
-
-    image_index = {}
-    for filename in os.listdir(img_directory):
-        normalized_name = normalize_text(remove_all_extensions(filename))
-        if normalized_name and normalized_name not in image_index:
-            image_index[normalized_name] = filename
-    return image_index
-
-
-def image_candidates(slug, brand_name):
-    cleaned_name = re.sub(r'\s*\(.*?\)\s*', ' ', brand_name or '')
-    candidates = [
-        brand_name or '',
-        cleaned_name,
-        (slug or '').replace('-', ' '),
-    ]
-
-    normalized_candidates = []
-    for candidate in candidates:
-        normalized_candidate = normalize_text(candidate)
-        if normalized_candidate and normalized_candidate not in normalized_candidates:
-            normalized_candidates.append(normalized_candidate)
-
-    return normalized_candidates
-
-
-def resolve_brand_image(slug, brand_name, image_index):
-    for candidate in image_candidates(slug, brand_name):
-        if candidate in image_index:
-            return f"img/{image_index[candidate]}"
-    return ''
-
-
-# Brands with external catalog URLs
+# Mock data for brands (based on existing catalogo/ folders)
 brands = {
     'condor': {
         'name': 'Condor',
-        'description': 'Ferramentas elétricas profissionais para construção e reforma.',
-        'logo': 'condor logo.jpg',
-        'catalog_url': 'https://condor.ind.br/produto/pintura-imobiliaria?page=5'
+        'description': 'Ferramentas elétricas profissionais para construção e reforma.'
     },
     'grupo-krona': {
         'name': 'Grupo Krona',
-        'description': 'Tubos, conexões e sistemas hidráulicos de alta performance.',
-        'logo': 'Grupo Krona logo.webp',
-        'catalog_url': 'https://www.krona.com.br/produtos/'
+        'description': 'Tubos, conexões e sistemas hidráulicos de alta performance.'
     },
     'hidronorth': {
         'name': 'HidroNorth',
-        'description': 'Soluções completas em hidráulica e saneamento.',
-        'logo': None,  # No logo file
-        'catalog_url': 'https://www.hydronorth.com.br/produtos.html'
+        'description': 'Soluções completas em hidráulica e saneamento.'
     },
     'quartzolit': {
         'name': 'Quartzolit (Saint-Gobain)',
-        'description': 'Impermeabilizantes e aditivos para concreto de referência.',
-        'logo': None,
-        'catalog_url': 'https://www.quartzolit.weber/search-content'
+        'description': 'Impermeabilizantes e aditivos para concreto de referência.'
     },
     'starrett': {
         'name': 'Starrett',
-        'description': 'Ferramentas de precisão e medição de alta qualidade.',
-        'logo': None,
-        'catalog_url': 'https://starrett.com.br/'
+        'description': 'Ferramentas de precisão e medição de alta qualidade.'
     },
     'viqua': {
         'name': 'Viqua',
-        'description': 'Sistemas de purificação de água UV líder mundial.',
-        'logo': 'viqua logo.webp',
-        'catalog_url': 'https://viqua.com.br/produtos/?ambiente[]=716'
+        'description': 'Sistemas de purificação de água UV líder mundial.'
     }
 }
 
-brand_image_index = build_image_index()
-
-for slug, brand in brands.items():
-    brand['image'] = resolve_brand_image(slug, brand.get('name', ''), brand_image_index)
+# Mock products data for each brand
+def get_products(brand_slug):
+    products_data = {
+        'condor': [
+            {'name': 'Furadeira de Impacto', 'summary': 'Furadeira potente com função percussão para alvenaria.'},
+            {'name': 'Parafusadeira', 'summary': 'Parafusadeira de alto torque com bateria 18V.'},
+            {'name': 'Lixadeira Angular', 'summary': 'Lixadeira para corte e desbaste em diversos materiais.'}
+        ],
+        'grupo-krona': [
+            {'name': 'Tubos PPR 2ª Geração', 'summary': 'Tubos para água quente/fria de alta durabilidade.'},
+            {'name': 'Conexões Esgoto', 'summary': 'Conexões com vedação perfeita para sistemas de esgoto.'},
+            {'name': 'Registro Gaveta', 'summary': 'Registros para controle preciso do fluxo.'}
+        ],
+        'hidronorth': [
+            {'name': 'Válvulas Esfera', 'summary': 'Válvulas para sistemas hidráulicos industriais.'},
+            {'name': 'Tubos CPVC', 'summary': 'Tubos resistentes a corrosão e altas temperaturas.'}
+        ],
+        'quartzolit': [
+            {'name': 'Quartzolit Impermeabilizante', 'summary': 'Impermeabilização de lajes e reservatórios.'},
+            {'name': 'Aditivo Quartzolit', 'summary': 'Melhora resistência e trabalhabilidade do concreto.'}
+        ],
+        'starrett': [
+            {'name': 'Paquímetro Digital', 'summary': 'Medição precisa até 150mm, resolução 0.01mm.'},
+            {'name': 'Micrômetro', 'summary': 'Medidas externas com precisão excepcional.'}
+        ],
+        'viqua': [
+            {'name': 'VH200 UV', 'summary': 'Desinfecção UV para residências (1-4 pessoas).'},
+            {'name': 'VH410 UV', 'summary': 'Sistema UV para maiores vazões residenciais.'}
+        ]
+    }
+    return products_data.get(brand_slug, [])
 
 @app.route('/')
 def home():
@@ -124,29 +77,28 @@ def catalogo(marca):
         flash('Catálogo não encontrado. Volte para marcas.', 'error')
         return redirect(url_for('home'))
     brand = brands[marca]
-    # Redirect to external catalog
-    if 'catalog_url' in brand:
-        return redirect(brand['catalog_url'])
-    flash('Catálogo não disponível.', 'error')
-    return redirect(url_for('home'))
+    products = get_products(marca)
+    return render_template('catalogo.html', brand=brand, products=products)
 
-@app.route('/contato', methods=['GET', 'POST'])
-def contato():
-    if request.method == 'POST':
-        honeypot = request.form.get('honeypot', '')
-        if honeypot:
-            flash('Detecção de spam. Tente novamente.', 'error')
-            return redirect(url_for('home') + '#contato')
+@app.route('/contato', methods=['POST'])
+def contato_post():
+    honeypot = request.form.get('honeypot', '')
+    if honeypot:
+        flash('Detecção de spam. Tente novamente.', 'error')
+        return redirect(url_for('home') + '#contato')
 
-        nome = request.form.get('nome', '').strip()
-        email = request.form.get('email', '').strip()
-        telefone = request.form.get('telefone', '').strip()
-        mensagem = request.form.get('mensagem', '').strip()
+    nome = request.form.get('nome', '').strip()
+    email = request.form.get('email', '').strip()
+    telefone = request.form.get('telefone', '').strip()
+    mensagem = request.form.get('mensagem', '').strip()
 
-        if nome and mensagem and (email or telefone):
-            flash('Obrigado! Mensagem recebida. Responderemos em breve.', 'success')
-        else:
-            flash('Preencha nome, mensagem e email ou telefone.', 'error')
+    if nome and mensagem and (email or telefone):
+        # TODO: Integrate real email (smtplib) in production
+        flash('Obrigado! Mensagem recebida. Responderemos em breve.', 'success')
+    else:
+        flash('Preencha nome, mensagem e email ou telefone.', 'error')
+
+    return redirect(url_for('home') + '#contato')
 
 if __name__ == '__main__':
     print('🚀 Iniciando servidor HTTPS Inovare...')
