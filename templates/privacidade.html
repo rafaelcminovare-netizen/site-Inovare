@@ -1,59 +1,163 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Política de Privacidade - Inovare</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6f7;
+      margin: 0;
+    }
 
-{% block content %}
-<section class="section single-page" id="privacidade">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">LGPD</span>
-      <h1>Política de Privacidade</h1>
+    .privacy-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .privacy-title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .privacy-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .privacy-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .privacy-card h2 {
+      font-size: 22px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    .privacy-card h3 {
+      font-size: 20px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    .privacy-card p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .privacy-card ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    .privacy-card li {
+      margin-bottom: 6px;
+      color: #555;
+    }
+
+    .site-header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="{{ url_for('home') }}" class="brand">Inovare</a>
+      <nav class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="/#sobre">Sobre</a>
+        <a href="/#marcas">Marcas</a>
+        <a href="/#regiao">Região</a>
+        <a href="/#contato">Contato</a>
+      </nav>
     </div>
-    <div class="content-grid">
-      <div class="content-main animate-fade">
-        <h2>1. Introdução</h2>
-        <p>A Inovare Representações Comerciais respeita a privacidade de seus usuários e está comprometida em proteger seus dados pessoais de acordo com a Lei Geral de Proteção de Dados Pessoais (LGPD - Lei 13.709/2018).</p>
-        
-        <h2>2. Dados Coletados</h2>
-        <p>Coletamos os seguintes dados:</p>
+  </header>
+
+  <main class="privacy-page">
+    <section class="privacy-container">
+      <h1 class="privacy-title">Política de Privacidade</h1>
+      <p class="privacy-subtitle">
+        Inovare Representações Comerciais • Última atualização: 22 de abril de 2026
+      </p>
+
+      <div class="privacy-card">
+        <h2>Inovare Representações Comerciais</h2>
+        <p><em>Última atualização: 22/04/2026</em></p>
+
+        <p>A <strong>Inovare Representações Comerciais</strong> respeita a privacidade dos usuários e atua com total transparência em relação às informações em seu site.</p>
+
+        <h3>1. Introdução</h3>
+        <p>A Inovare Representações Comerciais preza pela transparência e pelo respeito à privacidade dos usuários que acessam seu site. Este site possui caráter exclusivamente institucional, sendo destinado à apresentação da empresa e de seus catálogos de produtos.</p>
+
+        <h3>2. Coleta de Informações</h3>
+        <p>Nosso site <strong>não realiza coleta ativa de dados pessoais</strong>.</p>
+        <p>Não possuímos:</p>
         <ul>
-          <li><strong>Dados do formulário de contato</strong>: Nome, email, telefone, mensagem</li>
-          <li><strong>Cookies</strong>: Preferências de navegação, aceitação de cookies</li>
-          <li><strong>Dados de uso</strong>: IP, navegador, páginas visitadas (anônimos)</li>
+          <li>Cadastro de usuários</li>
+          <li>Área de login</li>
+          <li>Banco de dados com informações de clientes</li>
+          <li>Armazenamento de e-mails ou contatos</li>
+          <li>Não há formulários de envio de dados</li>
+          <li>Não armazenamos informações pessoais</li>
         </ul>
-        
-        <h2>3. Finalidade dos Dados</h2>
-        <p>Os dados são utilizados para:</p>
+        <p>O site tem caráter <strong>institucional e informativo</strong>, apresentando catálogos de produtos e informações sobre a empresa.</p>
+
+        <h3>3. Navegação e Dados Técnicos</h3>
+        <p>Durante a navegação, podem ser coletadas automaticamente informações técnicas padrão, como:</p>
         <ul>
-          <li>Responder contatos e solicitações comerciais</li>
-          <li>Melhorar a experiência do site</li>
-          <li>Envio de informações relevantes (com consentimento)</li>
+          <li>Endereço IP</li>
+          <li>Tipo de navegador</li>
+          <li>Dispositivo utilizado</li>
+          <li>Páginas acessadas</li>
         </ul>
-        
-        <h2>4. Cookies</h2>
-        <p>Utilizamos cookies essenciais para funcionamento e analíticos para melhoria. Você pode gerenciar via banner de consentimento.</p>
-        
-        <h2>5. Compartilhamento</h2>
-        <p>Não compartilhamos dados com terceiros sem consentimento, exceto obrigações legais.</p>
-        
-        <h2>6. Direitos do Titular (LGPD Art. 18)</h2>
-        <p>Você pode:</p>
+        <p>Esses dados são utilizados apenas para funcionamento básico da internet e podem ser processados por serviços de hospedagem, sem identificação direta do usuário. Durante a navegação, podem ser coletadas automaticamente informações técnicas padrão, como endereço IP, tipo de navegador, dispositivo utilizado e páginas acessadas. Esses dados são utilizados apenas para o funcionamento do site.</p>
+
+        <h3>4. Uso de Cookies</h3>
+        <p>Nosso site pode utilizar cookies básicos necessários para o funcionamento adequado da navegação. Utilizamos apenas cookies essenciais para o funcionamento do site, sem qualquer finalidade de identificação pessoal, publicidade ou criação de perfis.</p>
+        <p>Não utilizamos cookies para:</p>
         <ul>
-          <li>Confirmar existência de dados</li>
-          <li>Acessar dados</li>
-          <li>Corrigir dados incompletos</li>
-          <li>Anonimizar/portabilidade</li>
-          <li>Eliminar dados desnecessários</li>
+          <li>Captura de dados pessoais</li>
+          <li>Criação de perfis de usuários</li>
+          <li>Remarketing ou anúncios personalizados</li>
         </ul>
-        <p><strong>Contato DPO:</strong> dpo@inovare.com.br ou (47) 99651-1021</p>
-        
-        <h2>7. Segurança</h2>
-        <p>Utilizamos HTTPS, criptografia e práticas seguras para proteger dados.</p>
-        
-        <h2>8. Atualizações</h2>
-        <p>Esta política pode ser atualizada. Versão: Jan 2025.</p>
-        
-        <a href="#contato" class="button button-primary">Fale conosco sobre dados</a>
+        <p>Você pode desativar os cookies nas configurações do seu navegador, se desejar.</p>
+
+        <h3>5. Compartilhamento de Informações</h3>
+        <p>A <strong>Inovare Representações Comerciais</strong> não compartilha, vende ou armazena dados pessoais de usuários. Não compartilhamos, vendemos ou armazenamos dados pessoais de usuários.</p>
+
+        <h3>6. Links no Site</h3>
+        <p>Nosso site pode conter links para catálogos de produtos e páginas externas de fabricantes ou parceiros. Ao acessar esses links, o usuário estará sujeito às políticas e condições dessas páginas. Nosso site pode conter links para catálogos de produtos e páginas externas de fabricantes ou parceiros. Ao acessá-los, o usuário estará sujeito às políticas dessas plataformas.</p>
+
+        <h3>7. Segurança</h3>
+        <p>Mesmo não realizando coleta de dados pessoais, adotamos boas práticas para garantir um ambiente seguro e confiável para navegação. Adotamos boas práticas para manter o ambiente seguro, estável e confiável para navegação.</p>
+
+        <h3>8. Direitos do Usuário</h3>
+        <p>Caso, no futuro, haja qualquer tipo de coleta de dados, os direitos previstos na Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD) serão integralmente respeitados.</p>
+
+        <h3>9. Alterações nesta Política</h3>
+        <p>Esta Política de Privacidade pode ser atualizada a qualquer momento para refletir mudanças no site ou adequações legais. Esta política pode ser atualizada a qualquer momento para refletir melhorias ou adequações legais.</p>
+
+        <p>Ao utilizar nosso site, você concorda com os termos desta Política de Privacidade. Ao continuar a navegação neste site, o usuário declara estar ciente destes termos.</p>
       </div>
-    </div>
-  </div>
-</section>
-{% endblock %}
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="{{ url_for('home') }}" class="button button-primary" style="display: inline-block; padding: 15px 30px; background: #007bff; color: white; text-decoration: none; border-radius: 8px;">Voltar ao site</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,9 +1,9 @@
-# ✅ **FEITO - Capa + Catálogos corrigidos**
+# Task: Enable site viewing without errors (fix HTTPS warning)
 
-## Resumo:
-- **Capa**: Imagem `capa site.png` full-width + overlay ✅
-- **Altura reduzida**: 50vh desktop, 40vh mobile ✅
-- **Logos catálogos**: Adicionadas em `app.py` (`static/img/`) ✅
-- **Servidor**: http://127.0.0.1:5000 ✅
+## Steps:
+- [x] 1. Install dependencies (pip install -r requirements.txt)\n- [x] 2. Edit app.py to use HTTP instead of HTTPS
+- [ ] 3. Run python app.py
+- [ ] 4. Verify site loads at http://127.0.0.1:5000 without errors
+- [ ] 5. Complete task
 
-**Acesse http://127.0.0.1:5000** - tudo funcionando perfeitamente!
+Current status: Starting step 1

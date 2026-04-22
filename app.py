@@ -107,8 +107,8 @@ def contato_post():
     return redirect(url_for('home') + '#contato')
 
 if __name__ == '__main__':
-    print('🚀 Iniciando servidor HTTPS Inovare...')
-    print('🌐 Acesse: https://127.0.0.1:5000')
-    print('⚠️  Certificado auto-assinado: prossiga no navegador.')
+    print('🚀 Iniciando servidor HTTP Inovare...')
+    print('🌐 Acesse: http://127.0.0.1:5000')
+    print('✅ Servidor HTTP pronto (sem avisos de certificado).')
     print('🛑 Ctrl+C para parar')
-    app.run(debug=True, host='127.0.0.1', port=5000, ssl_context='adhoc')
+    app.run(debug=True, host='127.0.0.1', port=5000)
