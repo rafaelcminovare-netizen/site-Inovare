@@ -85,10 +85,13 @@ function renderBrands() {
 
 // Cookie consent logic
 function initCookies() {
-  if (localStorage.getItem('cookiesAccepted')) {
+  const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+
+  if (cookiesAccepted === 'true') {
     document.getElementById('cookieBanner')?.classList.remove('show');
     return;
   }
+
   setTimeout(() => {
     document.getElementById('cookieBanner')?.classList.add('show');
   }, 2000);
