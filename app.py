@@ -8,32 +8,38 @@ brands = {
     'condor': {
         'name': 'Condor',
         'description': 'Ferramentas elétricas profissionais para construção e reforma.',
-        'image': 'img/condor.png.webp'
+        'image': 'img/Logo Condor.png',
+        'catalog_url': 'static/catalogos/condor catalogo atualizado.pdf'
     },
     'grupo-krona': {
-        'name': 'Grupo Krona',
+        'name': 'Krona',
         'description': 'Tubos, conexões e sistemas hidráulicos de alta performance.',
-        'image': 'img/grupo krona.png.jfif'
+        'image': 'img/Logo Krona.png',
+        'catalog_url': 'static/catalogos/krona catalogo atualizado.pdf'
     },
     'hidronorth': {
-        'name': 'HidroNorth',
+        'name': 'Hidronorth',
         'description': 'Soluções completas em hidráulica e saneamento.',
-        'image': 'img/hidronorth.png.png'
+        'image': 'img/Logo Hidronorth (1).png',
+        'catalog_url': 'static/catalogos/HD_PORTFOLIO PRODUTOS 2026_DIGITAL.pdf'
     },
     'quartzolit': {
-        'name': 'Quartzolit (Saint-Gobain)',
+        'name': 'Quartzolit',
         'description': 'Impermeabilizantes e aditivos para concreto de referência.',
-        'image': 'img/Quartzolit.png.png'
+        'image': 'img/Logo quartzolit.png',
+        'catalog_url': 'static/catalogos/quartzolit catalogo atualizado.pdf'
     },
     'starrett': {
         'name': 'Starrett',
         'description': 'Ferramentas de precisão e medição de alta qualidade.',
-        'image': 'img/starrett.png.png'
+        'image': 'img/Logo Starret.png',
+        'catalog_url': 'static/catalogos/starrett catalogo atualizado.pdf'
     },
     'viqua': {
         'name': 'Viqua',
         'description': 'Sistemas de purificação de água UV líder mundial.',
-        'image': 'img/viqua.png.jpg'
+        'image': 'img/Logo Viqua (1).png',
+        'catalog_url': 'static/catalogos/viqua.pdf'
     }
 }
 
@@ -72,6 +78,14 @@ def get_products(brand_slug):
 @app.route('/')
 def home():
     return render_template('index.html', brands=brands)
+
+@app.route('/contato')
+def contato():
+    return render_template('contato.html')
+
+@app.route('/contatos')
+def contatos():
+    return render_template('contato.html')
 
 @app.route('/privacidade')
 def privacidade():

@@ -11,17 +11,17 @@
 
     <div class="catalog-grid">
       {% for product in products %}
-<article class="catalog-card animate-fade">
+      <article class="catalog-card animate-fade">
         <h3>{{ product.name }}</h3>
         <p>{{ product.summary }}</p>
       </article>
       {% endfor %}
     </div>
 
-    <div class="catalog-actions">
+    <div class="catalog-actions" style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+      <a class="button button-primary" href="{{ brand.catalog_url }}" target="_blank" rel="noopener noreferrer">Abrir catálogo PDF ↗</a>
       <a class="button button-secondary" href="{{ url_for('home') }}#marcas">Voltar para marcas</a>
       <a class="button button-primary" href="{{ url_for('home') }}#contato">Solicitar contato</a>
     </div>
-  </div>
 </section>
 {% endblock %}
