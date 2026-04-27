@@ -8,37 +8,37 @@ brands = {
     'condor': {
         'name': 'Condor',
         'description': 'Ferramentas elétricas profissionais para construção e reforma.',
-        'image': 'img/Logo Condor.png',
+        'image': 'images/logo-condor.png',
         'catalog_file': 'condor catalogo atualizado.pdf',
     },
     'grupo-krona': {
         'name': 'Krona',
         'description': 'Tubos, conexões e sistemas hidráulicos de alta performance.',
-        'image': 'img/Logo Krona.png',
+        'image': 'images/logo-krona.png',
         'catalog_file': 'krona catalogo atualizado.pdf',
     },
     'hidronorth': {
         'name': 'Hidronorth',
         'description': 'Soluções completas em hidráulica e saneamento.',
-        'image': 'img/Logo Hidronorth (1).png',
+        'image': 'images/logo-hidronorth.png',
         'catalog_file': 'HD_PORTFOLIO PRODUTOS 2026_DIGITAL.pdf',
     },
     'quartzolit': {
         'name': 'Quartzolit',
         'description': 'Impermeabilizantes e aditivos para concreto de referência.',
-        'image': 'img/Logo quartzolit.png',
+        'image': 'images/logo-quartzolit.png',
         'catalog_file': 'quartzolit catalogo atualizado.pdf',
     },
     'starrett': {
         'name': 'Starrett',
         'description': 'Ferramentas de precisão e medição de alta qualidade.',
-        'image': 'img/Logo Starret.png',
+        'image': 'images/logo-starret.png',
         'catalog_file': 'starrett catalogo atualizado.pdf',
     },
     'viqua': {
         'name': 'Viqua',
         'description': 'Sistemas de purificação de água UV líder mundial.',
-        'image': 'img/Logo Viqua (1).png',
+        'image': 'images/logo-viqua.png',
         'catalog_file': 'viqua.pdf',
     },
 }

@@ -147,7 +147,7 @@ body {
 .hero-fullwidth {
   height: 40vh;
   min-height: 250px;
-  background-image: url('/static/images/Banner%20atualizado.png');
+  background-image: url('/static/images/banner-atualizado.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
