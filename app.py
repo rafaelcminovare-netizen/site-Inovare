@@ -9,39 +9,48 @@ brands = {
         'name': 'Condor',
         'description': 'Ferramentas elétricas profissionais para construção e reforma.',
         'image': 'img/Logo Condor.png',
-        'catalog_url': '/static/catalogos/condor catalogo atualizado.pdf'
+        'catalog_file': 'condor catalogo atualizado.pdf',
     },
     'grupo-krona': {
         'name': 'Krona',
         'description': 'Tubos, conexões e sistemas hidráulicos de alta performance.',
         'image': 'img/Logo Krona.png',
-        'catalog_url': '/static/catalogos/krona catalogo atualizado.pdf'
+        'catalog_file': 'krona catalogo atualizado.pdf',
     },
     'hidronorth': {
         'name': 'Hidronorth',
         'description': 'Soluções completas em hidráulica e saneamento.',
         'image': 'img/Logo Hidronorth (1).png',
-        'catalog_url': 'https://www.hydronorth.com.br/categoria/28/resinas.html'
+        'catalog_file': 'HD_PORTFOLIO PRODUTOS 2026_DIGITAL.pdf',
     },
     'quartzolit': {
         'name': 'Quartzolit',
         'description': 'Impermeabilizantes e aditivos para concreto de referência.',
         'image': 'img/Logo quartzolit.png',
-        'catalog_url': '/static/catalogos/quartzolit catalogo atualizado.pdf'
+        'catalog_file': 'quartzolit catalogo atualizado.pdf',
     },
     'starrett': {
         'name': 'Starrett',
         'description': 'Ferramentas de precisão e medição de alta qualidade.',
         'image': 'img/Logo Starret.png',
-        'catalog_url': '/static/catalogos/starrett catalogo atualizado.pdf'
+        'catalog_file': 'starrett catalogo atualizado.pdf',
     },
     'viqua': {
         'name': 'Viqua',
         'description': 'Sistemas de purificação de água UV líder mundial.',
         'image': 'img/Logo Viqua (1).png',
-        'catalog_url': '/static/catalogos/viqua.pdf'
-    }
+        'catalog_file': 'viqua.pdf',
+    },
 }
+
+
+def resolve_brand_data(brand):
+    brand_data = brand.copy()
+    catalog_file = brand_data.pop('catalog_file', None)
+    if catalog_file:
+        brand_data['catalog_url'] = url_for('static', filename=f'catalogos/{catalog_file}')
+    return brand_data
+
 
 # Mock products data for each brand
 def get_products(brand_slug):
@@ -75,30 +84,37 @@ def get_products(brand_slug):
     }
     return products_data.get(brand_slug, [])
 
+
 @app.route('/')
 def home():
-    return render_template('index.html', brands=brands)
+    resolved_brands = {slug: resolve_brand_data(brand) for slug, brand in brands.items()}
+    return render_template('index.html', brands=resolved_brands)
+
 
 @app.route('/contato')
 def contato():
     return render_template('contato.html')
 
+
 @app.route('/contatos')
 def contatos():
     return render_template('contato.html')
 
+
 @app.route('/privacidade')
 def privacidade():
     return render_template('privacidade.html')
+
 
 @app.route('/catalogo/<marca>')
 def catalogo(marca):
     if marca not in brands:
         flash('Catálogo não encontrado. Volte para marcas.', 'error')
         return redirect(url_for('home'))
-    brand = brands[marca]
+    brand = resolve_brand_data(brands[marca])
     products = get_products(marca)
     return render_template('catalogo.html', brand=brand, products=products)
+
 
 @app.route('/contato', methods=['POST'])
 def contato_post():
@@ -119,6 +135,7 @@ def contato_post():
         flash('Preencha nome, mensagem e email ou telefone.', 'error')
 
     return redirect(url_for('home') + '#contato')
+
 
 if __name__ == '__main__':
     print('🚀 Iniciando servidor HTTP Inovare...')

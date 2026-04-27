@@ -233,7 +233,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.04), transparent 55%);
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.03), transparent 55%);
   opacity: 0;
   transition: opacity 0.35s ease;
   pointer-events: none;
@@ -241,8 +241,8 @@ body {
 
 .company-card:hover {
   transform: translateY(-10px) scale(1.01);
-  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.16);
-  border-color: rgba(15, 23, 42, 0.18);
+  box-shadow: 0 24px 60px rgba(17, 24, 39, 0.12);
+  border-color: rgba(17, 24, 39, 0.16);
 }
 
 .company-card:hover::before {
@@ -367,18 +367,19 @@ body {
   min-height: 3.25rem;
   border: none;
   border-radius: 0.85rem;
-  background: linear-gradient(135deg, #374151 0%, #111827 100%);
-  color: #fff;
+  background: #111827;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 12px 20px rgba(17, 24, 39, 0.14);
   font-size: 1rem;
   font-weight: 700;
-  box-shadow: 0 16px 24px rgba(17, 24, 39, 0.18);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease, background 0.3s ease;
 }
 
 .company-card:hover .company-card__button {
   transform: translateY(-1px);
-  box-shadow: 0 20px 30px rgba(31, 41, 55, 0.26);
-  filter: brightness(1.03);
+  box-shadow: none !important;
+  filter: none !important;
 }
 
 .company-modal {
@@ -601,6 +602,75 @@ body {
 
 .premios-section {
   background: linear-gradient(180deg, #eceff2 0%, #dfe5ea 100%);
+}
+
+.premios-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.premio-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 0;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.premio-card__media {
+  min-height: 280px;
+  background: #f8fafc;
+}
+
+.premio-card__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.premio-card__content {
+  display: grid;
+  align-content: center;
+  gap: 0.9rem;
+  padding: 2rem;
+}
+
+.premio-card__content h3 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  line-height: 1.15;
+  color: #111827;
+  font-family: 'Poppins', sans-serif;
+}
+
+.premio-card__content p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .premios-grid {
+    gap: 1rem;
+  }
+
+  .premio-card {
+    grid-template-columns: 1fr;
+  }
+
+  .premio-card__media {
+    min-height: 220px;
+  }
+
+  .premio-card__content {
+    padding: 1.4rem;
+  }
 }
 
 .region {
