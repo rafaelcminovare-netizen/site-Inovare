@@ -158,25 +158,337 @@
   </div>
 </section>
 
-<section class="section premios-section" id="premios">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Prêmios</span>
-      <h2>Reconhecimentos conquistados</h2>
-    </div>
-    <div class="premios-grid">
-      <article class="premio-card">
-        <div class="premio-card__media">
-          <img src="{{ url_for('static', filename='images/premios.png') }}" alt="Prêmios e reconhecimentos Inovare">
+<!-- ============================================================
+     INOVARE — MELHORIA PARTE 4 (REVISADA): PRÊMIOS
+     Mudanças desta versão:
+       - Todo verde substituído por cinza escuro (#374151) e cinza médio
+       - Espaço para logo da empresa ao lado direito de cada bloco de ano
+       - Timeline com marcador cinza chumbo
+       - Tags das marcas em cinza neutro
+       - Animação slide-in ao scroll mantida (sem jQuery)
+     ============================================================ -->
+
+<style>
+/* ── PRÊMIOS ── */
+.premios-section {
+  background-color: #ffffff;
+  padding: 80px 0;
+}
+
+.premios-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Eyebrow label */
+.premios-section .p-eyebrow {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+/* Título principal */
+.premios-section h2 {
+  text-align: center;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 56px;
+  line-height: 1.2;
+}
+
+/* ── LINHA DO TEMPO ── */
+.premios-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Fio vertical da timeline */
+.premios-timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, #d1d5db, #e5e7eb);
+}
+
+/* ── BLOCO DE UM ANO ── */
+.premio-bloco {
+  position: relative;
+  padding-left: 52px;
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.premio-bloco.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.premio-bloco:nth-child(1) { transition-delay: 0.05s; }
+.premio-bloco:nth-child(2) { transition-delay: 0.22s; }
+.premio-bloco:nth-child(3) { transition-delay: 0.39s; }
+
+/* Marcador circular — cinza chumbo */
+.premio-marker {
+  position: absolute;
+  left: 4px;
+  top: 18px;
+  width: 24px;
+  height: 24px;
+  background: #374151;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.premio-marker svg {
+  width: 11px;
+  height: 11px;
+  fill: #ffffff;
+}
+
+/* ── CARD DO CONTEÚDO ── */
+.premio-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-left: 3px solid #9ca3af;
+  border-radius: 12px;
+  padding: 24px 28px;
+  transition: box-shadow 0.25s ease, border-left-color 0.25s ease;
+}
+
+.premio-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border-left-color: #374151;
+}
+
+/* ── CABEÇALHO DO CARD: ano + logo lado a lado ── */
+.premio-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.premio-ano {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+
+.premio-logo-slot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.premio-logo-slot img {
+  height: 32px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.75;
+  transition: filter 0.2s, opacity 0.2s;
+}
+
+.premio-logo-slot img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.premio-logo-placeholder {
+  height: 32px;
+  min-width: 90px;
+  background: #e5e7eb;
+  border: 1.5px dashed #9ca3af;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #9ca3af;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: default;
+  user-select: none;
+}
+
+/* ── LISTA DE CONQUISTAS ── */
+.premio-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.premio-lista li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.premio-lista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: #6b7280;
+  border-radius: 2px;
+}
+
+.premio-tag {
+  display: inline-block;
+  margin-left: 7px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .premios-timeline::before { left: 10px; }
+  .premio-marker { left: 0; width: 20px; height: 20px; }
+  .premio-bloco { padding-left: 40px; }
+  .premio-card { padding: 18px 16px; }
+  .premio-card-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+</style>
+
+<section class="premios-section" id="premios">
+  <div class="premios-inner">
+
+    <span class="p-eyebrow">Prêmios</span>
+    <h2>Reconhecimento e resultados<br>de alto impacto</h2>
+
+    <div class="premios-timeline" id="premiosTimeline">
+
+      <!-- ══════════════ 2025 ══════════════ -->
+      <div class="premio-bloco">
+        <div class="premio-marker">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 5h-2V3H7v2H5C3.9 5 3 5.9 3 7v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0011 16.9V19H7v2h10v-2h-4v-2.1a5.01 5.01 0 003.61-3.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zm-2 3.82A3.01 3.01 0 0114.18 11h-.01A3 3 0 019.83 8.82V7h7.17v1.82zM5 8V7h2v2.8C5.86 9.4 5 8.8 5 8zm14 0c0 .8-.86 1.4-2 1.8V7h2v1z"/>
+          </svg>
         </div>
-        <div class="premio-card__content">
-          <h3>Histórico de conquistas</h3>
-          <p>Resultados e reconhecimentos que reforçam a credibilidade da Inovare no mercado.</p>
+
+        <div class="premio-card">
+          <div class="premio-card-header">
+            <span class="premio-ano">2025</span>
+            <div class="premio-logo-slot">
+              <img src="{{ url_for('static', filename='img/Logo Condor.png') }}" alt="Condor">
+              <img src="{{ url_for('static', filename='img/Logo Starret.png') }}" alt="Starrett">
+            </div>
+          </div>
+
+          <ul class="premio-lista">
+            <li>
+              1° lugar nacional na campanha Condor Pincéis, com o maior número de treinamentos,
+              campanhas e ações de sell-out realizados no ano.
+              <span class="premio-tag">Condor</span>
+            </li>
+            <li>
+              1° lugar nacional na campanha Starrett, com maior crescimento de vendas no 1° semestre de 2025.
+              <span class="premio-tag">Starrett</span>
+            </li>
+            <li>
+              1° lugar nacional na campanha Starrett, com maior crescimento de vendas no ano de 2025.
+              <span class="premio-tag">Starrett</span>
+            </li>
+          </ul>
         </div>
-      </article>
-    </div>
+      </div>
+
+      <!-- ══════════════ 2024 ══════════════ -->
+      <div class="premio-bloco">
+        <div class="premio-marker">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 5h-2V3H7v2H5C3.9 5 3 5.9 3 7v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0011 16.9V19H7v2h10v-2h-4v-2.1a5.01 5.01 0 003.61-3.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zm-2 3.82A3.01 3.01 0 0114.18 11h-.01A3 3 0 019.83 8.82V7h7.17v1.82zM5 8V7h2v2.8C5.86 9.4 5 8.8 5 8zm14 0c0 .8-.86 1.4-2 1.8V7h2v1z"/>
+          </svg>
+        </div>
+
+        <div class="premio-card">
+          <div class="premio-card-header">
+            <span class="premio-ano">2024</span>
+            <div class="premio-logo-slot">
+              <img src="{{ url_for('static', filename='img/Logo Krona.png') }}" alt="Krona">
+            </div>
+          </div>
+
+          <ul class="premio-lista">
+            <li>
+              Maior número de metas batidas no ano, em Santa Catarina.
+              <span class="premio-tag">Krona</span>
+            </li>
+            <li>
+              Melhor desempenho na aplicação de materiais de merchandising, em Santa Catarina.
+              <span class="premio-tag">Krona</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /premiosTimeline -->
   </div>
 </section>
+
+<!-- JS — animação fade + slide via Intersection Observer (sem jQuery) -->
+<script>
+(function() {
+  var blocos = document.querySelectorAll('#premiosTimeline .premio-bloco');
+
+  if (!('IntersectionObserver' in window)) {
+    blocos.forEach(function(b) { b.classList.add('visible'); });
+    return;
+  }
+
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  blocos.forEach(function(b) { obs.observe(b); });
+})();
+</script>
+<!-- FIM PARTE 4 -->
 
 <div class="company-modal" id="companyModal" aria-hidden="true">
   <div class="company-modal__backdrop" data-close-modal="true"></div>
@@ -267,7 +579,6 @@
             <span class="info-label">WhatsApp:</span>
             <a href="https://wa.me/554799651021" target="_blank" rel="noopener">Iniciar conversa</a>
           </li>
-          <li>Resposta em até 1 hora em horário comercial.</li>
         </ul>
       </div>
     </div>

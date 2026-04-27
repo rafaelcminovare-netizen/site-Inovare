@@ -85,16 +85,19 @@ function renderBrands() {
 
 // Cookie consent logic
 function initCookies() {
+  const cookieBanner = document.getElementById('cookieBanner');
+  if (!cookieBanner) return;
+
   const cookiesAccepted = localStorage.getItem('cookiesAccepted');
 
   if (cookiesAccepted === 'true') {
-    document.getElementById('cookieBanner')?.classList.remove('show');
+    cookieBanner.classList.remove('show');
     return;
   }
 
-  setTimeout(() => {
-    document.getElementById('cookieBanner')?.classList.add('show');
-  }, 2000);
+  requestAnimationFrame(() => {
+    cookieBanner.classList.add('show');
+  });
 }
 
 function acceptCookies() {
