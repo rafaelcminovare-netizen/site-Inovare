@@ -2,13 +2,15 @@ const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
 
 // Mobile menu toggle
-menuToggle?.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+}
 
-document.querySelectorAll('a[href^=\"#\"]').forEach((link) => {
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
+    navLinks?.classList.remove('open');
   });
 });
 
@@ -29,7 +31,7 @@ const observerOptions = {
 };
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
@@ -37,20 +39,30 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe all animate-fade elements
-document.querySelectorAll('.brand-card, .section, .premios-card, .region-card, .contact-card').forEach(el => {
+document.querySelectorAll('.brand-card, .section, .premios-card, .region-card, .contact-card').forEach((el) => {
   el.classList.add('animate-fade');
   observer.observe(el);
 });
 
 // COMPANY CARDS - Render brands from JSON data
 function renderBrands() {
-  const brandsData = JSON.parse(document.getElementById('brands-data').textContent);
+  const brandsDataEl = document.getElementById('brands-data');
   const grid = document.getElementById('companiesGrid');
-  
-  if (!grid || brandsData.length === 0) return;
 
-  grid.innerHTML = brandsData.map(brand => `
-    <article class="company-card" tabindex="0" role="button">
+  if (!brandsDataEl || !grid) return;
+
+  let brandsData = [];
+  try {
+    brandsData = JSON.parse(brandsDataEl.textContent || '[]');
+  } catch (error) {
+    console.error('Erro ao ler dados das marcas:', error);
+    return;
+  }
+
+  if (!Array.isArray(brandsData) || brandsData.length === 0) return;
+
+  grid.innerHTML = brandsData.map((brand) => `
+    <a class="company-card" href="${brand.link}" target="_blank" rel="noopener noreferrer" aria-label="Abrir catálogo da marca ${brand.name}">
       <div class="company-card__media">
         ${brand.image ? `<img src="${brand.image}" alt="${brand.name} logo" class="company-card__image">` : `
           <div class="company-card__placeholder">
@@ -65,64 +77,11 @@ function renderBrands() {
       <div class="company-card__content">
         <h3 class="company-card__title">${brand.name}</h3>
         <p class="company-card__description">${brand.description}</p>
-        <button class="company-card__button">Ver Catálogo</button>
+        <span class="company-card__button">Ver Catálogo ↗</span>
       </div>
-    </article>
+    </a>
   `).join('');
-
-  // Add event listeners to new cards
-  document.querySelectorAll('.company-card').forEach((card, index) => {
-    card.addEventListener('click', () => openCompanyModal(brandsData[index]));
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openCompanyModal(brandsData[index]);
-      }
-    });
-  });
 }
-
-function openCompanyModal(brand) {
-  const modal = document.getElementById('companyModal');
-  const banner = document.getElementById('companyModalBanner');
-  const title = document.getElementById('companyModalTitle');
-  const description = document.getElementById('companyModalDescription');
-  const link = document.getElementById('companyModalLink');
-  
-  title.textContent = brand.name;
-  description.textContent = brand.description;
-  link.href = brand.link;
-  link.textContent = `Ver Catálogo ${brand.name}`;
-  
-  if (brand.image) {
-    banner.classList.add('has-image');
-    banner.style.backgroundImage = `url(${brand.image})`;
-  } else {
-    banner.classList.remove('has-image');
-  }
-  
-  modal.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCompanyModal() {
-  const modal = document.getElementById('companyModal');
-  modal.classList.remove('is-open');
-  document.body.style.overflow = '';
-}
-
-// Modal close events
-document.addEventListener('click', (e) => {
-  if (e.target.dataset.closeModal || e.target.closest('.company-modal__close')) {
-    closeCompanyModal();
-  }
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeCompanyModal();
-  }
-});
 
 // Cookie consent logic
 function initCookies() {
@@ -153,4 +112,3 @@ document.addEventListener('DOMContentLoaded', () => {
   initCookies();
   renderBrands();
 });
-

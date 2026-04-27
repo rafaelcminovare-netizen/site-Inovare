@@ -9,37 +9,37 @@ brands = {
         'name': 'Condor',
         'description': 'Ferramentas elétricas profissionais para construção e reforma.',
         'image': 'img/Logo Condor.png',
-        'catalog_url': 'static/catalogos/condor catalogo atualizado.pdf'
+        'catalog_url': '/static/catalogos/condor catalogo atualizado.pdf'
     },
     'grupo-krona': {
         'name': 'Krona',
         'description': 'Tubos, conexões e sistemas hidráulicos de alta performance.',
         'image': 'img/Logo Krona.png',
-        'catalog_url': 'static/catalogos/krona catalogo atualizado.pdf'
+        'catalog_url': '/static/catalogos/krona catalogo atualizado.pdf'
     },
     'hidronorth': {
         'name': 'Hidronorth',
         'description': 'Soluções completas em hidráulica e saneamento.',
         'image': 'img/Logo Hidronorth (1).png',
-        'catalog_url': 'static/catalogos/HD_PORTFOLIO PRODUTOS 2026_DIGITAL.pdf'
+        'catalog_url': 'https://www.hydronorth.com.br/categoria/28/resinas.html'
     },
     'quartzolit': {
         'name': 'Quartzolit',
         'description': 'Impermeabilizantes e aditivos para concreto de referência.',
         'image': 'img/Logo quartzolit.png',
-        'catalog_url': 'static/catalogos/quartzolit catalogo atualizado.pdf'
+        'catalog_url': '/static/catalogos/quartzolit catalogo atualizado.pdf'
     },
     'starrett': {
         'name': 'Starrett',
         'description': 'Ferramentas de precisão e medição de alta qualidade.',
         'image': 'img/Logo Starret.png',
-        'catalog_url': 'static/catalogos/starrett catalogo atualizado.pdf'
+        'catalog_url': '/static/catalogos/starrett catalogo atualizado.pdf'
     },
     'viqua': {
         'name': 'Viqua',
         'description': 'Sistemas de purificação de água UV líder mundial.',
         'image': 'img/Logo Viqua (1).png',
-        'catalog_url': 'static/catalogos/viqua.pdf'
+        'catalog_url': '/static/catalogos/viqua.pdf'
     }
 }
 
