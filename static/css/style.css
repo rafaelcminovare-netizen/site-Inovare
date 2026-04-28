@@ -1224,53 +1224,100 @@ input[placeholder] {
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--surface-primary);
-  border-top: 1px solid var(--border);
-  box-shadow: var(--shadow-lg);
-  padding: 1.5rem;
+  background: #111827;
+  color: #f9fafb;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 -8px 30px rgba(0,0,0,0.25);
+  padding: 1rem 1.5rem;
   z-index: 999;
   transform: translateY(100%);
   transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
 }
 
 .cookie-banner.show {
   transform: translateY(0);
 }
 
+.cookie-banner p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e5e7eb;
+}
+
+.cookie-banner a {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
 .cookie-buttons {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
 }
 
 .cookie-buttons .button {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+}
+
+.cookie-buttons .button-primary {
+  background: #f9fafb;
+  color: #111827;
+  border-color: #f9fafb;
+}
+
+.cookie-buttons .button-primary:hover {
+  background: #e5e7eb;
+  border-color: #e5e7eb;
+}
+
+.cookie-buttons .button-secondary {
+  background: transparent;
+  color: #d1d5db;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.cookie-buttons .button-secondary:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
 }
 
 /* Cookie Banner Mobile */
 @media (max-width: 768px) {
   .cookie-banner {
     z-index: 1100;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
     padding: 1rem;
-    max-height: 40vh;
-    overflow-y: auto;
+    border-radius: 1rem 1rem 0 0;
   }
 
   .cookie-banner p {
-    font-size: 0.85rem;
-    margin-bottom: 0.75rem;
+    font-size: 0.82rem;
+    text-align: center;
   }
 
   .cookie-buttons {
-    flex-direction: column;
-    gap: 0.6rem;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .cookie-buttons .button {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    font-size: 0.85rem;
+    flex: 1 1 auto;
+    min-width: 90px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -1381,8 +1428,8 @@ input[placeholder] {
 
 @media (max-width: 480px) {
   .hero {
-    height: 56vh;
-    min-height: 360px;
+    height: auto;
+    min-height: 0;
   }
 
   .company-card__media {
