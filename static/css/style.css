@@ -1180,6 +1180,44 @@ input[placeholder] {
   }
 }
 
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.button-primary {
+  background: var(--text-primary);
+  color: var(--surface-primary);
+  border-color: var(--text-primary);
+}
+
+.button-primary:hover {
+  background: var(--bg-secondary);
+  border-color: var(--bg-secondary);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+.button-secondary:hover {
+  background: var(--surface-secondary);
+  color: var(--text-primary);
+}
+
 /* Cookie Banner */
 .cookie-banner {
   position: fixed;
@@ -1208,6 +1246,32 @@ input[placeholder] {
 .cookie-buttons .button {
   padding: 0.75rem 1.5rem;
   font-size: 0.9rem;
+}
+
+/* Cookie Banner Mobile */
+@media (max-width: 768px) {
+  .cookie-banner {
+    z-index: 1100;
+    padding: 1rem;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  .cookie-banner p {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cookie-buttons {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .cookie-buttons .button {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
 }
 
 /* Animation classes */
