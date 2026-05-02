@@ -84,30 +84,73 @@ function renderBrands() {
 }
 
 // Cookie consent logic
+const COOKIE_BANNER_HEIGHT_CSS_VAR = '--cookie-banner-height';
+let cookieResizeHandlerAttached = false;
+
+function setCookieBannerSpacingVisible() {
+  const cookieBanner = document.getElementById('cookieBanner');
+  if (!cookieBanner) return;
+
+  const height = cookieBanner.getBoundingClientRect().height;
+  document.documentElement.style.setProperty(COOKIE_BANNER_HEIGHT_CSS_VAR, `${height}px`);
+  document.body.classList.add('cookie-banner-open');
+}
+
+function setCookieBannerSpacingHidden() {
+  document.documentElement.style.setProperty(COOKIE_BANNER_HEIGHT_CSS_VAR, `0px`);
+  document.body.classList.remove('cookie-banner-open');
+}
+
+function attachCookieResizeHandler() {
+  if (cookieResizeHandlerAttached) return;
+  cookieResizeHandlerAttached = true;
+
+  window.addEventListener(
+    'resize',
+    () => {
+      const banner = document.getElementById('cookieBanner');
+      if (!banner) return;
+      const isVisible = banner.classList.contains('show');
+      if (isVisible) setCookieBannerSpacingVisible();
+    },
+    { passive: true }
+  );
+}
+
 function initCookies() {
   const cookieBanner = document.getElementById('cookieBanner');
   if (!cookieBanner) return;
+
+  attachCookieResizeHandler();
+  setCookieBannerSpacingHidden();
 
   const cookiesAccepted = localStorage.getItem('cookiesAccepted');
 
   if (cookiesAccepted === 'true') {
     cookieBanner.classList.remove('show');
+    setCookieBannerSpacingHidden();
     return;
   }
 
   requestAnimationFrame(() => {
     cookieBanner.classList.add('show');
+    // Permite que o layout/altura do banner “assente” após a classe show.
+    requestAnimationFrame(() => {
+      setCookieBannerSpacingVisible();
+    });
   });
 }
 
 function acceptCookies() {
   localStorage.setItem('cookiesAccepted', 'true');
   document.getElementById('cookieBanner')?.classList.remove('show');
+  setCookieBannerSpacingHidden();
 }
 
 function rejectCookies() {
   localStorage.setItem('cookiesAccepted', 'false');
   document.getElementById('cookieBanner')?.classList.remove('show');
+  setCookieBannerSpacingHidden();
 }
 
 function cookieSettings() {
