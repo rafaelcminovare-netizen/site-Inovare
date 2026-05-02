@@ -1049,9 +1049,9 @@ input[placeholder] {
 
   .hero img {
     max-width: 100%;
-    height: clamp(180px, 40vh, 320px);
-    object-fit: cover;
-    object-position: center;
+    height: auto;
+    object-fit: contain;
+    object-position: center center;
     display: block;
   }
 
@@ -1292,15 +1292,7 @@ input[placeholder] {
   color: #fff;
 }
 
-/* Espaço reservado no layout quando o banner de cookies estiver visível */
-body {
-  padding-bottom: 0;
-}
-
-body.cookie-banner-open {
-  padding-bottom: calc(var(--cookie-banner-height, 0px) + env(safe-area-inset-bottom));
-  transition: padding-bottom 0.25s ease;
-}
+/* (removido) lógica de espaçamento para não interferir no layout do banner de cookies */
 
 /* Cookie Banner Mobile */
 @media (max-width: 768px) {
