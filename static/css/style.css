@@ -8,7 +8,7 @@ Em:root {
   --text-secondary: #4B5563;
   --text-muted: #6B7280;
   --accent-primary: #FFFFFF;
-  --accent-hover: #F3F4F6;
+  --accent-hover: #F3F4F6;.
   --border: rgba(0, 0, 0, 0.08);
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -147,7 +147,8 @@ body {
 .hero-fullwidth {
   height: 40vh;
   min-height: 250px;
-  background-image: url('/static/images/capa-site-atualizado.png');
+  background-image: url('/static/images/capa-site.png');
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
