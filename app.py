@@ -17,18 +17,13 @@ brands = {
         'image': 'images/logo-krona.png',
         'catalog_file': 'krona catalogo atualizado.pdf',
     },
-    'hidronorth': {
-        'name': 'Hidronorth',
-        'description': 'Soluções completas em hidráulica e saneamento.',
-        'image': 'images/logo-hidronorth.png',
-        'catalog_file': 'HD_PORTFOLIO PRODUTOS 2026_DIGITAL.pdf',
+    'Inkor': {
+        'name': 'Inkor',
+        'description': 'Soluções em argamassas e rejuntes.',
+        'image': 'images/logo-inkor.png',
+        'catalog_file': 'https://drive.google.com/uc?export=download&id=1EKRFYpc7jmE1j3LREuN1PbGXutSWgoLY',
     },
-    'quartzolit': {
-        'name': 'Quartzolit',
-        'description': 'Impermeabilizantes e aditivos para concreto de referência.',
-        'image': 'images/logo-quartzolit.png',
-        'catalog_file': 'quartzolit catalogo atualizado.pdf',
-    },
+    
     'starrett': {
         'name': 'Starrett',
         'description': 'Ferramentas de precisão e medição de alta qualidade.',
