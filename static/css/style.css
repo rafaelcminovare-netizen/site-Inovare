@@ -205,6 +205,15 @@ body {
   display: block;
 }
 
+/* Home banner (Flask templates/index.html) */
+.hero-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .represented-companies {
   position: relative;
   background: linear-gradient(180deg, #e8ecef 0%, #dde3e8 100%);
@@ -1054,6 +1063,15 @@ input[placeholder] {
     object-fit: cover;
     object-position: center top;
     display: block;
+  }
+
+  .hero-banner {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    max-width: 100%;
   }
 
   .hero-fullwidth {
