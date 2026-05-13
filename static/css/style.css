@@ -1051,8 +1051,8 @@ input[placeholder] {
   .hero img {
     max-width: 100%;
     height: auto;
-    object-fit: contain;
-    object-position: center center;
+    object-fit: cover;
+    object-position: center top;
     display: block;
   }
 
