@@ -302,25 +302,30 @@
 }
 
 .pdf-card.destaque {
-  background: linear-gradient(135deg, #111827, #374151);
-  color: #ffffff;
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  border-left: 3px solid #9ca3af;
 }
 
-.pdf-card.destaque h3,
+.pdf-card.destaque h3 {
+  color: #111827;
+}
+
 .pdf-card.destaque p,
 .pdf-card.destaque li {
-  color: #ffffff;
+  color: #4b5563;
 }
 
 .pdf-card.destaque li::before {
-  background: #ffffff;
+  background: #374151;
 }
 
 /* ── AÇÕES ── */
 .acoes-section {
-  background: #111827;
+  background: #f9fafb;
   padding: 85px 0;
-  color: #ffffff;
+  color: #111827;
 }
 
 .acoes-inner {
@@ -336,12 +341,15 @@
 }
 
 .acoes-header .acoes-eyebrow {
-  color: #d1d5db;
+  color: #6b7280;
 }
 
-.acoes-header h2,
+.acoes-header h2 {
+  color: #111827;
+}
+
 .acoes-header p {
-  color: #ffffff;
+  color: #4b5563;
 }
 
 .acoes-grid {
@@ -352,17 +360,17 @@
 
 .acao-card {
   background: rgb(255, 255, 255);
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid #e5e7eb;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 22px 55px rgba(0,0,0,0.28);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
 
 .acao-card:hover {
   transform: translateY(-7px);
-  box-shadow: 0 30px 70px rgb(255, 255, 255);
-  border-color: rgba(255,255,255,0.28);
+  box-shadow: 0 18px 42px rgba(0,0,0,0.12);
+  border-color: #d1d5db;
 }
 
 .acao-card img {
@@ -424,12 +432,11 @@
       <article class="pdf-card">
         <h3>Diferenciais</h3>
         <ul>
-          <li>Equipe com vendedores externos, back-office, televendas e promotor de vendas.</li>
-          <li>Visitas mensais aos clientes com divisão estratégica por região.</li>
-          <li>Carteira com mais de 500 clientes ativos.</li>
-          <li>CRM próprio para gestão comercial e acompanhamento de vendas.</li>
-          <li>Produção interna de brindes para campanhas e ações.</li>
-        </ul>
+          Equipe com vendedores externos, back-office, televendas e promotor de vendas.</li>
+          Visitas mensais aos clientes com divisão estratégica por região.</li>
+          Carteira com mais de 500 clientes ativos.</li>
+          CRM próprio para gestão comercial e acompanhamento de vendas.</li>
+          Produção interna de brindes para campanhas e ações.</li>
       </article>
 
       <article class="pdf-card">
@@ -446,8 +453,8 @@
 <section class="acoes-section" id="acoes">
   <div class="acoes-inner">
     <div class="acoes-header">
-      <span class="acoes-eyebrow">Ações realizadas</span>
-      <h2>Ativações, campanhas e treinamentos</h2>
+      <span class="acoes-eyebrow">Trabalhos realizadas</span>
+      <h2>Ações, campanhas e treinamentos</h2>
       <p>
         Conheça algumas ações desenvolvidas pela Inovare junto aos clientes e às marcas representadas.
       </p>
