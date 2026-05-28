@@ -919,4 +919,113 @@ Seg – Sex, das 8h às 18h
   </div>
 </section>
 
+<style>
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-banner {
+  animation: heroZoom 1.2s ease forwards;
+}
+
+@keyframes heroZoom {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pdf-card,
+.acao-card,
+.premio-card,
+.contato-card,
+.catalogo-drive-grid a {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pdf-card:hover,
+.acao-card:hover,
+.premio-card:hover,
+.contato-card:hover,
+.catalogo-drive-grid a:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+.premio-logo-slot img,
+.catalogo-drive-grid img,
+.redes-grid a {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.premio-logo-slot img:hover,
+.catalogo-drive-grid img:hover {
+  transform: scale(1.08);
+  opacity: 1;
+}
+
+.section-header,
+.pdf-info-header,
+.acoes-header,
+.premios-inner > h2,
+.contato-inner > h2 {
+  animation: titleFloat 0.9s ease both;
+}
+
+@keyframes titleFloat {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const elementos = document.querySelectorAll(
+    ".sobre-inner, .section-header, .catalogo-drive-grid a, .pdf-card, .acao-card, .region-copy, .region-map-container, .contato-card, .redes-grid a"
+  );
+
+  elementos.forEach(function (el) {
+    el.classList.add("reveal");
+  });
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  elementos.forEach(function (el) {
+    observer.observe(el);
+  });
+});
+</script>
+
+
 {% endblock %}
