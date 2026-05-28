@@ -8,7 +8,7 @@ brands = {
     'condor': {
         'name': 'Condor',
         'description': 'Ferramentas elétricas profissionais para construção e reforma.',
-        'image': 'images/logo-condor.png',
+        'image': 'images/logo-condor-att-op.png',
         'catalog_file': 'condor catalogo atualizado.pdf',
     },
     'grupo-krona': {
