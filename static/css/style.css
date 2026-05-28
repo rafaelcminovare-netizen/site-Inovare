@@ -147,7 +147,7 @@ body {
 .hero-fullwidth {
   height: 40vh;
   min-height: 250px;
-  background-image: url('/static/images/capa-site.png');
+background-image: url('/static/img/site-feat-clone.png');
 
   background-size: cover;
   background-position: center;
